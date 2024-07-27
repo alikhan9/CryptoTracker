@@ -9,7 +9,6 @@ export const CoinPage = () => {
 
   const [coin, setCoin] = useState({})
   const params = useParams()
-  
   const url =
     `https://api.coingecko.com/api/v3/coins/${params.coinId}?localization=false&sparkline=true`;
 
@@ -76,26 +75,26 @@ export const CoinPage = () => {
             </div>
             <div>
               <p className='text-gray-500 text-sm'>Hashing Algorithm</p>
-              {coin.hashing_algorithm ? <p>{coin.hashing_algorithm}</p> : null}
+              {coin.hashing_algorithm ? <p>{coin.hashing_algorithm}</p> : "No data"}
             </div>
             <div>
               <p className='text-gray-500 text-sm'>Trust Score</p>
-              {coin.tickers ? <p>{coin.liquidity_score.toFixed(2)}</p> : null}
+              {coin.tickers ? <p>{parseFloat(coin.liquidity_score)?.toFixed(2) === 'NaN' ? "No data" : coin.liquidity_score.toFixed(2)}</p> : null}
             </div>
           </div>
 
           <div className='flex justify-between py-4'>
             <div>
               <p className='text-gray-500 text-sm'>Price Change (24h)</p>
-              {coin.market_data ? <p>{coin.market_data.price_change_percentage_24h.toFixed(2)}%</p> : null}
+              {coin.market_data ? <p>{parseFloat(coin.market_data.price_change_percentage_24h).toFixed(2)}%</p> : null}
             </div>
             <div>
               <p className='text-gray-500 text-sm'>Price Change (7d)</p>
-              {coin.market_data ? <p>{coin.market_data.price_change_percentage_7d.toFixed(2)}%</p> : null}
+              {coin.market_data ? <p>{parseFloat(coin.market_data.price_change_percentage_7d).toFixed(2)}%</p> : null}
             </div>
             <div>
               <p className='text-gray-500 text-sm'>Price Change (14d)</p>
-              {coin.market_data ? <p>{coin.market_data.price_change_percentage_14d.toFixed(2)}%</p> : null}
+              {coin.market_data ? <p>{parseFloat(coin.market_data.price_change_percentage_14d).toFixed(2)}%</p> : null}
             </div>
           </div>
 
